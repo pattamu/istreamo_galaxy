@@ -82,7 +82,7 @@ const followUser = async (req,res) => {
         let followingUser = await userModel.findOneAndUpdate({_id: myId}, {
             $addToSet: {followings: userToFollowId}
             },{new: true})
-        res.status(200).send({followedUser, followingUser})
+        res.status(200).send({msg: `you've now followed ${userToFollowId}`, data: followingUser})
     }
     catch(err){
         res.status(500).send({msg: err.message})
@@ -108,7 +108,7 @@ const unfollowUser = async (req,res) => {
         let unfollowingUser = await userModel.findOneAndUpdate({_id: myId}, {
             $pull: {followings: userToUnfollowId}
             },{new: true})
-        res.status(200).send({unfollowedUser, unfollowingUser})
+        res.status(200).send({msg: `you've now unfollowed ${userToUnfollowId}`, data: unfollowingUser})
     }
     catch(err){
         res.status(500).send({msg: err.message})

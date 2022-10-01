@@ -3,7 +3,8 @@
 # Nodejs developer Assignment
 
 #postman-collection: https://www.getpostman.com/collections/570d6a0759699713d0ed
-online hosted on: 
+#physical copy of postman collection: https://drive.google.com/file/d/1rMZ-aQxBjcrQvA66Xe3wqgwpFVMH56st/view?usp=sharing
+#online hosted on: 
 
 Create API in Node js of following feature mentioned
 
