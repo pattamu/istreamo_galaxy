@@ -13,6 +13,9 @@
   },
   "author": "Pattamu Sandeep",
   "license": "ISC",
+  "engines": {
+    "node":"16.14.2"
+  },
   "bugs": {
     "url": "https://github.com/pattamu/istreamo_galaxy/issues"
   },
