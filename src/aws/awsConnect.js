@@ -1,34 +1,24 @@
-const aws = require("aws-sdk")
+const S3 = require('aws-sdk/clients/s3')
 
-/***********************************AWS File Upload*************************************/
-aws.config.update({
-    accessKeyId: "AKIATCRPKSQ2APZF5AA5",
-    secretAccessKeyId: "ScZUasCor4xBQ4dgZ8yAnJJ+WrXrelpOSeMKjWSH",
-    region: "ap-south-1"
+const bucketName = "sandeep-social-media-app"
+const region = 'ap-south-1'
+const accessKeyId = "AKIATCRPKSQ2NYRKUSJU"
+const secretAccessKeyId = "QloyMHsU4wQ19F0boxjwinbROzBJbWWj6KL/WjI2"
+
+const s3 = new S3({
+    apiVersion: "2010-12-01",
+    region,
+    accessKeyId,
+    secretAccessKeyId
 })
 
-let uploadFile = async (file) =>{
-    // console.log(file);
-    return new Promise( (resolve, reject) => {
-    // this function will upload file to aws and return the link
-    let s3= new aws.S3({apiVersion: '2006-03-01'}); // we will be using the s3 service of aws
-
-    var uploadParams= {
-        ACL: "public-read",
-        Bucket: "sandeep467",
-        Key: "sandeep/" + file.originalname, 
+const uploadFile = (file) => {
+    const uploadParams = {
+        Bucket: bucketName,
+        Key: "sandeep/" + file.originalname,
         Body: file.buffer
     }
-
-    s3.upload( uploadParams, (err, data ) => {
-        if(err) {
-            return reject({"error": err})
-        }
-        console.log("file uploaded succesfully")
-        return resolve(data.Location)
-        })
-    })
+    return s3.upload(uploadParams).promise()
 }
-/*************************************************************************************/
 
 module.exports = {uploadFile}

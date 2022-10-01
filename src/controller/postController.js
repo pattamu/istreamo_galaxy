@@ -13,7 +13,8 @@ const createPost = async (req,res) => {
         if(file){
             if(!validateMedia(file))
                 return res.status(400).send({msg: "Only Image or Video file is allowed."})
-            data.media = await uploadFile(file)
+            const result = await uploadFile(file)
+            data.media = result.Location
         }
         let savePost = await postModel.create(data)
         res.status(201).send({data: {
